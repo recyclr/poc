@@ -3,12 +3,13 @@
 	import { writable, get } from 'svelte/store';
 	import { MapLibre, GeoJSON, CircleLayer, SymbolLayer, Popup } from 'svelte-maplibre';
 	import 'maplibre-gl/dist/maplibre-gl.css';
+	import { goto } from '$app/navigation';
 
 	let mapCenter = [-122.6765, 45.5231];
 	let mapZoom = 10;
 	let isFilterDrawerOpen = false;
 	let searchTerm = '';
-	let popupContent = null;
+	let selectedListing = null; // Track the selected listing for the drawer
 	let filters = {
 		categories: [],
 		priceRange: [0, 5000],
@@ -78,12 +79,17 @@
 		}
 	}
 
-	function handleMarkerClick(listing) {
-		selectedListing = listing;
+	// Function to close the drawer
+	function closeDrawer() {
+		selectedListing = null;
 	}
 
-	function closePopup() {
-		selectedListing = null;
+	// Function to navigate to the details page
+	function goToDetailsPage(listingId) {
+		//  navigate to a details page at /listing/:listingId
+		console.log(`Navigating to listing details for ID: ${listingId}`);
+
+		goto(`/listing/${listingId}`);
 	}
 
 	let listings = {
@@ -144,13 +150,22 @@
 		]
 	};
 
+	// Updated handler for feature clicks to show drawer
 	function handleFeatureClick(e) {
 		const feature = e.features[0]; // Get the clicked feature
 		if (!feature) return;
 
-		const coordinates = feature.geometry.coordinates;
-		mapCenter = coordinates; // Update center to the clicked marker
-		mapZoom = 14; // Adjust zoom level as needed
+		// If it's a cluster, just center and zoom (existing behavior)
+		if (feature.properties.cluster) {
+			const coordinates = feature.geometry.coordinates;
+			mapCenter = coordinates;
+			mapZoom = 14;
+			return;
+		}
+
+		// If it's an individual marker, set the selected listing and center the map
+		selectedListing = feature.properties;
+		mapCenter = feature.geometry.coordinates;
 	}
 </script>
 
@@ -426,4 +441,114 @@
 			/>
 		</GeoJSON>
 	</MapLibre>
+
+	<!-- Bottom Drawer for listing details -->
+	{#if selectedListing}
+		<div
+			class="fixed right-0 bottom-0 left-0 z-30 transform rounded-t-xl bg-white shadow-lg transition-transform duration-300 ease-in-out"
+		>
+			<div class="p-4">
+				<!-- Drawer handle/indicator -->
+				<div class="mb-2 flex justify-center">
+					<div class="h-1 w-12 rounded-full bg-gray-300"></div>
+				</div>
+
+				<!-- Close button -->
+				<button
+					on:click={closeDrawer}
+					class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+					aria-label="Close drawer"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-6 w-6"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M6 18L18 6M6 6l12 12"
+						/>
+					</svg>
+				</button>
+
+				<div class="flex flex-col sm:flex-row">
+					<!-- Listing image -->
+					<div class="mb-4 sm:mr-4 sm:mb-0 sm:w-1/3">
+						<img
+							src="mock-images/item.jpeg"
+							alt={selectedListing.title}
+							class="h-48 w-full rounded-lg object-cover"
+						/>
+					</div>
+
+					<!-- Listing details -->
+					<div class="sm:w-2/3">
+						<h2 class="mb-2 text-xl font-bold">{selectedListing.title}</h2>
+
+						<div class="mb-3 flex items-center">
+							<span class="text-lg font-bold text-green-600">${selectedListing.price}</span>
+						</div>
+
+						<p class="mb-3 text-gray-600">{selectedListing.description}</p>
+						<p class="mb-4 text-sm text-gray-500">
+							<svg
+								class="mr-1 inline-block h-4 w-4"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+								/>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+								/>
+							</svg>
+							{selectedListing.address}
+						</p>
+
+						<!-- Action buttons -->
+						<div class="flex space-x-3">
+							<button
+								on:click={() => goToDetailsPage(selectedListing.id)}
+								class="focus:ring-opacity-50 flex-1 rounded-lg bg-green-600 py-3 font-medium text-white transition-colors hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
+							>
+								View Details
+							</button>
+							<button
+								class="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 transition-colors hover:bg-gray-200 focus:outline-none"
+								aria-label="Save listing"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="h-6 w-6 text-gray-700"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{/if}
 </div>
