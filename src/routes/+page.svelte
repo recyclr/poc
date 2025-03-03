@@ -149,7 +149,7 @@
 				<div
 					class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow transition-shadow duration-200 hover:shadow-md"
 				>
-					<img src={listing.imageUrl} alt={listing.title} class="h-48 w-full object-cover" />
+					<img src="mock-images/item.jpeg" alt={listing.title} class="h-48 w-full object-cover" />
 					<div class="p-4">
 						<div class="flex items-start justify-between">
 							<div>
