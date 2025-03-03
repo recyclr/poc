@@ -391,7 +391,7 @@
 				applyToClusters
 				hoverCursor="pointer"
 				paint={{
-					'circle-color': '#11b4da',
+					'circle-color': '#38A169',
 					'circle-radius': ['step', ['get', 'point_count'], 20, 3, 25, 6, 30],
 					'circle-stroke-width': 1,
 					'circle-stroke-color': '#fff'
@@ -417,7 +417,7 @@
 				applyToClusters={false}
 				hoverCursor="pointer"
 				paint={{
-					'circle-color': '#11b4da',
+					'circle-color': '#38A169',
 					'circle-radius': 8,
 					'circle-stroke-width': 1,
 					'circle-stroke-color': '#fff'
