@@ -73,10 +73,10 @@
 		<div class="absolute inset-0 bg-gradient-to-r from-green-900 to-green-700 opacity-90"></div>
 		<div class="relative px-6 py-16 sm:px-12 sm:py-24 lg:py-32">
 			<h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-				Give construction materials a second life
+				Geef bouwmaterialen een tweede leven
 			</h1>
 			<p class="mt-6 max-w-lg text-xl text-green-100 sm:max-w-3xl">
-				Connect with demolition companies and find sustainable materials for your next project.
+				Maak contact met sloopbedrijven en vind duurzame materialen voor uw volgende project.
 			</p>
 
 			<!-- Search Bar -->
@@ -88,14 +88,14 @@
 								bind:value={searchTerm}
 								type="text"
 								class="block w-full rounded-l-md border-gray-300 px-4 py-3 focus:border-green-500 focus:ring-green-500"
-								placeholder="Search for materials..."
+								placeholder="Zoek naar materialen..."
 							/>
 						</div>
 						<select
 							bind:value={selectedCategory}
 							class="inline-flex items-center border border-l-0 border-gray-300 bg-gray-50 px-4 pr-10 text-gray-700"
 						>
-							<option value="">All Categories</option>
+							<option value="">Alle Categorieën</option>
 							{#each categories as category}
 								<option value={category.name}>{category.icon} {category.name}</option>
 							{/each}
@@ -104,7 +104,7 @@
 							on:click={handleSearch}
 							class="inline-flex items-center rounded-r-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none"
 						>
-							Search
+							Zoeken
 						</button>
 					</div>
 				</div>
@@ -113,7 +113,7 @@
 						href="/map"
 						class="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-6 text-base font-medium text-green-700 hover:bg-gray-50 md:px-8 md:py-2.5 md:text-lg"
 					>
-						View Map
+						Bekijk Kaart
 					</a>
 				</div>
 			</div>
@@ -122,7 +122,7 @@
 
 	<!-- Category section -->
 	<section class="mb-12">
-		<h2 class="mb-6 text-2xl font-bold text-gray-900">Browse by Category</h2>
+		<h2 class="mb-6 text-2xl font-bold text-gray-900">Blader per categorie</h2>
 		<div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
 			{#each categories as category}
 				<a
@@ -131,7 +131,7 @@
 				>
 					<span class="mb-2 text-3xl">{category.icon}</span>
 					<h3 class="text-lg font-medium text-gray-900">{category.name}</h3>
-					<p class="text-sm text-gray-500">{category.count} listings</p>
+					<p class="text-sm text-gray-500">{category.count} zoekertjes</p>
 				</a>
 			{/each}
 		</div>
@@ -140,8 +140,8 @@
 	<!-- Featured listings -->
 	<section class="mb-12">
 		<div class="mb-6 flex items-center justify-between">
-			<h2 class="text-2xl font-bold text-gray-900">Featured Listings</h2>
-			<a href="/listings" class="font-medium text-green-600 hover:text-green-800">View all</a>
+			<h2 class="text-2xl font-bold text-gray-900">Aanbevolen zoekertjes</h2>
+			<a href="/listings" class="font-medium text-green-600 hover:text-green-800">Bekijk alles</a>
 		</div>
 
 		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -169,7 +169,7 @@
 							href={`/listing/${listing.id}`}
 							class="mt-4 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
 						>
-							View Details
+							Bekijk Details
 						</a>
 					</div>
 				</div>
@@ -180,16 +180,16 @@
 	<!-- Call to action -->
 	<section class="mb-12 rounded-lg bg-gray-50 p-8">
 		<div class="text-center">
-			<h2 class="text-3xl font-bold text-gray-900">Have materials to sell?</h2>
+			<h2 class="text-3xl font-bold text-gray-900">Heeft u materialen te verkopen?</h2>
 			<p class="mx-auto mt-2 max-w-3xl text-xl text-gray-500">
-				List your demolition materials and connect with buyers in your area.
+				Plaats uw sloopmaterialen en kom in contact met kopers in uw regio.
 			</p>
 			<div class="mt-6">
 				<a
 					href="/create-listing"
 					class="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700"
 				>
-					Create a Listing
+					Maak een zoekertje
 				</a>
 			</div>
 		</div>

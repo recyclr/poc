@@ -38,7 +38,7 @@
 								? 'border-green-500 text-gray-900'
 								: 'border-transparent text-gray-500 hover:border-green-300 hover:text-gray-700'} px-1 pt-1 text-sm font-medium"
 						>
-							Listings
+							Zoekertjes
 						</a>
 						<a
 							href="/map"
@@ -46,7 +46,7 @@
 								? 'border-green-500 text-gray-900'
 								: 'border-transparent text-gray-500 hover:border-green-300 hover:text-gray-700'} px-1 pt-1 text-sm font-medium"
 						>
-							Map
+							Kaart
 						</a>
 						<a
 							href="/my-listings"
@@ -54,7 +54,7 @@
 								? 'border-green-500 text-gray-900 '
 								: 'border-transparent text-gray-500 hover:border-green-300 hover:text-gray-700'} px-1 pt-1 text-sm font-medium"
 						>
-							My Listings
+							Mijn Zoekertjes
 						</a>
 					</nav>
 				</div>
@@ -64,14 +64,14 @@
 							href="/listings"
 							class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700"
 						>
-							Your Listings
+							Uw Advertenties
 						</a>
 						<a href="/profile" class="ml-3 rounded-full p-1 text-gray-400 hover:text-gray-500">
 							<span class="sr-only">View profile</span>
 							<div
 								class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-green-600"
 							>
-								<span class="text-sm font-medium">You</span>
+								<span class="text-sm font-medium">U</span>
 							</div>
 						</a>
 					{:else}
@@ -79,13 +79,13 @@
 							href="/login"
 							class="ml-3 inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
 						>
-							Sign in
+							Inloggen
 						</a>
 						<a
 							href="/register"
 							class="ml-3 inline-flex items-center rounded-md border border-green-600 border-transparent bg-white px-4 py-2 text-sm font-medium text-green-600 hover:bg-gray-50"
 						>
-							Register
+							Registreren
 						</a>
 					{/if}
 				</div>
@@ -128,45 +128,45 @@
 						href="/listing"
 						class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 					>
-						Listings
+						Advertenties
 					</a>
 					<a
 						href="/map"
 						class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 					>
-						Map
+						Kaart
 					</a>
 					<a
 						href="/my-listings"
 						class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 					>
-						My Listings
+						Mijn Advertenties
 					</a>
 					{#if isLoggedIn}
 						<a
 							href="/listings"
 							class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 						>
-							Your Listings
+							Uw Advertenties
 						</a>
 						<a
 							href="/profile"
 							class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 						>
-							Profile
+							Profiel
 						</a>
 					{:else}
 						<a
 							href="/login"
 							class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 						>
-							Sign in
+							Inloggen
 						</a>
 						<a
 							href="/register"
 							class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 						>
-							Register
+							Registreren
 						</a>
 					{/if}
 				</div>
@@ -185,10 +185,10 @@
 			<div class="flex flex-col items-center justify-between md:flex-row">
 				<div class="mb-4 md:mb-0">
 					<span class="text-xl font-bold text-green-600">Recyclr</span>
-					<p class="mt-1 text-sm text-gray-500">Sustainable demolition materials marketplace</p>
+					<p class="mt-1 text-sm text-gray-500">Duurzame marktplaats voor sloopmaterialen</p>
 				</div>
 				<div class="flex space-x-6">
-					<a href="/terms" class="text-sm text-gray-500 hover:text-gray-700">Terms</a>
+					<a href="/terms" class="text-sm text-gray-500 hover:text-gray-700">Voorwaarden</a>
 					<a href="/privacy" class="text-sm text-gray-500 hover:text-gray-700">Privacy</a>
 					<a href="/contact" class="text-sm text-gray-500 hover:text-gray-700">Contact</a>
 				</div>

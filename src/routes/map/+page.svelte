@@ -18,12 +18,12 @@
 	};
 
 	let categories = [
-		{ name: 'Wood', icon: '🪵', checked: false },
-		{ name: 'Metal', icon: '🔧', checked: false },
-		{ name: 'Stone', icon: '🪨', checked: false },
-		{ name: 'Electronics', icon: '💻', checked: false },
-		{ name: 'Fixtures', icon: '🚿', checked: false },
-		{ name: 'Masonry', icon: '🧱', checked: false }
+		{ name: 'Hout', icon: '🪵', checked: false },
+		{ name: 'Metaal', icon: '🔧', checked: false },
+		{ name: 'Steen', icon: '🪨', checked: false },
+		{ name: 'Elektronica', icon: '💻', checked: false },
+		{ name: 'Armaturen', icon: '🚿', checked: false },
+		{ name: 'Metselwerk', icon: '🧱', checked: false }
 	];
 
 	function toggleFilterDrawer() {
@@ -32,7 +32,7 @@
 
 	function handleSearch() {
 		// This would be replaced with actual search logic
-		console.log(`Searching for: ${searchTerm}`);
+		console.log(`Zoeken naar: ${searchTerm}`);
 		// Close the drawer after search
 		isFilterDrawerOpen = false;
 	}
@@ -51,12 +51,12 @@
 		// Get selected categories
 		filters.categories = categories.filter((cat) => cat.checked).map((cat) => cat.name);
 
-		console.log('Applied filters:', filters);
+		console.log('Toegepaste filters:', filters);
 		isFilterDrawerOpen = false;
 
 		// Here you would filter the map markers based on filters
 		// For this demo, we just log the action
-		console.log('Filtering map markers with:', filters);
+		console.log('Filteren van kaartmarkeringen met:', filters);
 	}
 
 	function getCurrentLocation() {
@@ -67,15 +67,15 @@
 					mapCenter = [longitude, latitude];
 					mapZoom = 14;
 
-					console.log(`User location: ${latitude}, ${longitude}`);
+					console.log(`Gebruikerslocatie: ${latitude}, ${longitude}`);
 				},
 				(error) => {
-					console.error('Error getting location:', error);
-					alert('Unable to retrieve your location. Please check your browser settings.');
+					console.error('Fout bij het ophalen van locatie:', error);
+					alert('Kan uw locatie niet ophalen. Controleer uw browserinstellingen.');
 				}
 			);
 		} else {
-			alert('Geolocation is not supported by your browser.');
+			alert('Geolocatie wordt niet ondersteund door uw browser.');
 		}
 	}
 
@@ -87,7 +87,7 @@
 	// Function to navigate to the details page
 	function goToDetailsPage(listingId) {
 		//  navigate to a details page at /listing/:listingId
-		console.log(`Navigating to listing details for ID: ${listingId}`);
+		console.log(`Navigeren naar zoekertje details voor ID: ${listingId}`);
 
 		goto(`/listing/${listingId}`);
 	}
@@ -99,12 +99,12 @@
 				type: 'Feature',
 				properties: {
 					id: 1,
-					title: 'Reclaimed Oak Beams',
-					category: 'Wood',
+					title: 'Gerecupereerde Eiken Balken',
+					category: 'Hout',
 					price: 1200,
-					description: '10 solid oak beams from 19th century warehouse, excellent condition',
+					description: '10 massieve eiken balken uit een 19e-eeuws magazijn, uitstekende staat',
 					imageUrl: '/api/placeholder/400/300',
-					address: '123 Main St, Portland, OR'
+					address: '123 Hoofdstraat, Portland, OR'
 				},
 				geometry: { type: 'Point', coordinates: [-122.6784, 45.5152] }
 			},
@@ -112,10 +112,10 @@
 				type: 'Feature',
 				properties: {
 					id: 2,
-					title: 'Vintage Brick Collection',
-					category: 'Masonry',
+					title: 'Vintage Bakstenen Collectie',
+					category: 'Metselwerk',
 					price: 850,
-					description: '400 red clay bricks from demolished factory building',
+					description: '400 rode kleibakstenen van gesloopt fabrieksgebouw',
 					imageUrl: '/api/placeholder/400/300',
 					address: '456 Pine Ave, Portland, OR'
 				},
@@ -126,9 +126,9 @@
 				properties: {
 					id: 3,
 					title: 'Server Racks (x5)',
-					category: 'Electronics',
+					category: 'Elektronica',
 					price: 2000,
-					description: 'Five 42U server racks, good condition, all mounting hardware included',
+					description: 'Vijf 42U server racks, goede staat, alle bevestigingsmaterialen inbegrepen',
 					imageUrl: '/api/placeholder/400/300',
 					address: '789 Tech Blvd, Portland, OR'
 				},
@@ -138,10 +138,10 @@
 				type: 'Feature',
 				properties: {
 					id: 4,
-					title: 'Granite Countertops',
-					category: 'Stone',
+					title: 'Granieten Aanrechtbladen',
+					category: 'Steen',
 					price: 1500,
-					description: 'Premium black granite countertops from office renovation',
+					description: 'Premium zwarte granieten aanrechtbladen van kantoorrenovatie',
 					imageUrl: '/api/placeholder/400/300',
 					address: '101 Market St, Portland, OR'
 				},
@@ -170,7 +170,7 @@
 </script>
 
 <svelte:head>
-	<title>Map - Recyclr</title>
+	<title>Kaart - Recyclr</title>
 </svelte:head>
 
 <div class="relative flex h-screen flex-col">
@@ -182,7 +182,7 @@
 					bind:value={searchTerm}
 					type="text"
 					class="w-full rounded-l-md border border-gray-300 px-4 py-2 focus:border-green-500 focus:ring-green-500"
-					placeholder="Search materials or location..."
+					placeholder="Zoek materialen of locatie..."
 				/>
 				<button
 					on:click={handleSearch}
@@ -229,7 +229,7 @@
 			<button
 				on:click={getCurrentLocation}
 				class="rounded-full bg-green-600 p-2 text-white hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
-				title="Use my location"
+				title="Gebruik mijn locatie"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -283,7 +283,7 @@
 
 				<!-- Categories -->
 				<div class="mb-6">
-					<h3 class="mb-2 text-lg font-medium text-gray-900">Categories</h3>
+					<h3 class="mb-2 text-lg font-medium text-gray-900">Categorieën</h3>
 					<div class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
 						{#each categories as category}
 							<label
@@ -302,7 +302,7 @@
 
 				<!-- Price Range -->
 				<div class="mb-6">
-					<h3 class="mb-2 text-lg font-medium text-gray-900">Price Range</h3>
+					<h3 class="mb-2 text-lg font-medium text-gray-900">Prijsklasse</h3>
 					<div class="px-2">
 						<input
 							type="range"
@@ -313,16 +313,16 @@
 							class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-green-600"
 						/>
 						<div class="mt-2 flex justify-between">
-							<span class="text-sm text-gray-500">$0</span>
-							<span class="text-sm font-medium text-gray-900">${filters.priceRange[1]}</span>
-							<span class="text-sm text-gray-500">$10,000+</span>
+							<span class="text-sm text-gray-500">€0</span>
+							<span class="text-sm font-medium text-gray-900">€{filters.priceRange[1]}</span>
+							<span class="text-sm text-gray-500">€10,000+</span>
 						</div>
 					</div>
 				</div>
 
 				<!-- Distance -->
 				<div class="mb-6">
-					<h3 class="mb-2 text-lg font-medium text-gray-900">Distance</h3>
+					<h3 class="mb-2 text-lg font-medium text-gray-900">Afstand</h3>
 					<div class="px-2">
 						<input
 							type="range"
@@ -341,9 +341,9 @@
 
 				<!-- Date Posted -->
 				<div class="mb-6">
-					<h3 class="mb-2 text-lg font-medium text-gray-900">Date Posted</h3>
+					<h3 class="mb-2 text-lg font-medium text-gray-900">Datum Geplaatst</h3>
 					<div class="grid grid-cols-4 gap-2">
-						{#each ['Any', 'Today', 'This Week', 'This Month'] as dateOption, i}
+						{#each ['Elke', 'Vandaag', 'Deze Week', 'Deze Maand'] as dateOption, i}
 							<label
 								class="flex cursor-pointer items-center justify-center rounded-md border p-2 hover:bg-gray-50"
 							>
@@ -376,7 +376,7 @@
 						on:click={applyFilters}
 						class="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
 					>
-						Apply Filters
+						Toepassen
 					</button>
 				</div>
 			</div>
@@ -524,7 +524,7 @@
 								on:click={() => goToDetailsPage(selectedListing.id)}
 								class="focus:ring-opacity-50 flex-1 rounded-lg bg-green-600 py-3 font-medium text-white transition-colors hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
 							>
-								View Details
+								Details Bekijken
 							</button>
 							<button
 								class="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 transition-colors hover:bg-gray-200 focus:outline-none"

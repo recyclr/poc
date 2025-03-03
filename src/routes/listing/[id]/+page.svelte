@@ -9,13 +9,13 @@
 	// In a real app, this would be replaced with an API call
 	const mockListing = {
 		id: 1,
-		title: 'Reclaimed Oak Beams',
-		category: 'Wood',
+		title: 'Gerecupereerde Eiken Balken',
+		category: 'Hout',
 		price: 1200,
 		description:
-			'10 solid oak beams from 19th century warehouse, excellent condition. Perfect for architectural features or high-end furniture projects. Each beam measures approximately 12ft x 12" x 12" and shows beautiful natural patina.',
+			'10 massieve eiken balken uit een 19e-eeuws magazijn, uitstekende staat. Perfect voor architecturale kenmerken of hoogwaardige meubelprojecten. Elke balk meet ongeveer 12ft x 12" x 12" en toont een prachtige natuurlijke patina.',
 		images: ['/mock-images/item.jpeg', '/mock-images/item.jpeg', '/mock-images/item.jpeg'],
-		address: '123 Main St, Portland, OR',
+		address: '123 Hoofdstraat, Portland, OR',
 		seller: {
 			name: 'John Smith',
 			rating: 4.8,
@@ -23,10 +23,10 @@
 			listings: 15
 		},
 		specifications: {
-			Material: 'Oak',
+			Material: 'Eik',
 			Age: 'Circa 1890s',
-			Condition: 'Good',
-			Quantity: '10 pieces',
+			Condition: 'Goed',
+			Quantity: '10 stuks',
 			Dimensions: '12ft x 12" x 12"'
 		},
 		posted: '2024-02-28',
@@ -39,7 +39,7 @@
 			await new Promise((resolve) => setTimeout(resolve, 500));
 			listing = mockListing;
 		} catch (e) {
-			error = 'Failed to load listing details';
+			error = 'Kon zoekertje niet laden';
 		} finally {
 			loading = false;
 		}
@@ -49,12 +49,12 @@
 </script>
 
 <svelte:head>
-	<title>{listing ? listing.title : 'Loading...'} - Recyclr</title>
+	<title>{listing ? listing.title : 'Laden...'} - Recyclr</title>
 </svelte:head>
 
 {#if loading}
 	<div class="flex h-screen items-center justify-center">
-		<div class="text-xl text-gray-600">Loading...</div>
+		<div class="text-xl text-gray-600">Laden...</div>
 	</div>
 {:else if error}
 	<div class="flex h-screen items-center justify-center">
@@ -67,7 +67,7 @@
 			<ol class="flex text-sm">
 				<li><a href="/" class="text-gray-500 hover:text-gray-700">Home</a></li>
 				<li class="mx-2 text-gray-500">/</li>
-				<li><a href="/map" class="text-gray-500 hover:text-gray-700">Listings</a></li>
+				<li><a href="/listing" class="text-gray-500 hover:text-gray-700">Zoekertjes</a></li>
 				<li class="mx-2 text-gray-500">/</li>
 				<li class="text-gray-900">{listing.title}</li>
 			</ol>
@@ -101,25 +101,25 @@
 			<div class="space-y-6">
 				<div>
 					<h1 class="text-3xl font-bold text-gray-900">{listing.title}</h1>
-					<p class="mt-2 text-3xl font-bold text-green-600">${listing.price}</p>
+					<p class="mt-2 text-3xl font-bold text-green-600">€{listing.price}</p>
 				</div>
 
 				<div class="flex items-center space-x-4">
 					<div class="flex items-center">
-						<span class="text-sm text-gray-500">Posted {listing.posted}</span>
+						<span class="text-sm text-gray-500">Geplaatst op {listing.posted}</span>
 					</div>
 					<div class="text-sm text-gray-500">
-						{listing.views} views
+						{listing.views} keer bekeken
 					</div>
 				</div>
 
 				<div>
-					<h2 class="text-lg font-medium text-gray-900">Description</h2>
+					<h2 class="text-lg font-medium text-gray-900">Beschrijving</h2>
 					<p class="mt-2 whitespace-pre-line text-gray-600">{listing.description}</p>
 				</div>
 
 				<div>
-					<h2 class="text-lg font-medium text-gray-900">Specifications</h2>
+					<h2 class="text-lg font-medium text-gray-900">Specificaties</h2>
 					<dl class="mt-2 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2">
 						{#each Object.entries(listing.specifications) as [key, value]}
 							<div class="flex justify-between sm:block">
@@ -131,7 +131,7 @@
 				</div>
 
 				<div>
-					<h2 class="text-lg font-medium text-gray-900">Location</h2>
+					<h2 class="text-lg font-medium text-gray-900">Locatie</h2>
 					<p class="mt-2 flex items-center text-gray-600">
 						<svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path
@@ -161,9 +161,9 @@
 							<div class="mt-1 flex items-center text-sm text-gray-500">
 								<span class="mr-2">★ {listing.seller.rating}</span>
 								<span>•</span>
-								<span class="ml-2">{listing.seller.listings} listings</span>
+								<span class="mx-2">{listing.seller.listings} zoekertjes </span>
 								<span>•</span>
-								<span class="ml-2">Member since {listing.seller.joined}</span>
+								<span class="ml-2">Lid sinds {listing.seller.joined}</span>
 							</div>
 						</div>
 					</div>
@@ -173,7 +173,7 @@
 					<button
 						class="flex-1 rounded-md bg-green-600 px-6 py-3 text-white hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none"
 					>
-						Contact Seller
+						Contacteer Verkoper
 					</button>
 					<button
 						class="rounded-md border border-gray-300 px-6 py-3 hover:bg-gray-50 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none"
