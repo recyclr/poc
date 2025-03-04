@@ -1,59 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-
-	// Fake data for demonstration
-	let featuredListings = [
-		{
-			id: 1,
-			title: 'Reclaimed Oak Beams',
-			category: 'Wood',
-			price: 1200,
-			description: '10 solid oak beams from 19th century warehouse, excellent condition',
-			imageUrl: '/api/placeholder/400/300',
-			address: '123 Main St, Portland, OR',
-			distance: '2.3 km'
-		},
-		{
-			id: 2,
-			title: 'Vintage Brick Collection',
-			category: 'Masonry',
-			price: 850,
-			description: '400 red clay bricks from demolished factory building',
-			imageUrl: '/api/placeholder/400/300',
-			address: '456 Pine Ave, Portland, OR',
-			distance: '4.1 km'
-		},
-		{
-			id: 3,
-			title: 'Server Racks (x5)',
-			category: 'Electronics',
-			price: 2000,
-			description: 'Five 42U server racks, good condition, all mounting hardware included',
-			imageUrl: '/api/placeholder/400/300',
-			address: '789 Tech Blvd, Portland, OR',
-			distance: '6.8 km'
-		},
-		{
-			id: 4,
-			title: 'Granite Countertops',
-			category: 'Stone',
-			price: 1500,
-			description: 'Premium black granite countertops from office renovation',
-			imageUrl: '/api/placeholder/400/300',
-			address: '101 Market St, Portland, OR',
-			distance: '3.5 km'
-		}
-	];
-
-	let categories = [
-		{ name: 'Wood', icon: '🪵', count: 124 },
-		{ name: 'Metal', icon: '🔧', count: 89 },
-		{ name: 'Stone', icon: '🪨', count: 67 },
-		{ name: 'Electronics', icon: '💻', count: 43 },
-		{ name: 'Fixtures', icon: '🚿', count: 38 },
-		{ name: 'Masonry', icon: '🧱', count: 31 }
-	];
-
+	import categories from '$lib/assets/data/categories.js';
+	import listings from '$lib/assets/data/listings.js';
 	let searchTerm = '';
 	let selectedCategory = '';
 
@@ -145,7 +93,7 @@
 		</div>
 
 		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-			{#each featuredListings as listing}
+			{#each listings as listing}
 				<div
 					class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow transition-shadow duration-200 hover:shadow-md"
 				>
