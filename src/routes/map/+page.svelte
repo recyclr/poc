@@ -1,11 +1,11 @@
 <script>
-	import { onMount } from 'svelte';
-	import { writable, get } from 'svelte/store';
-	import { MapLibre, GeoJSON, CircleLayer, SymbolLayer, Popup } from 'svelte-maplibre';
+	import { MapLibre, GeoJSON, CircleLayer, SymbolLayer } from 'svelte-maplibre';
+	import listings from '$lib/assets/data/listings.js';
+	import categories from '$lib/assets/data/categories.js';
 	import 'maplibre-gl/dist/maplibre-gl.css';
 	import { goto } from '$app/navigation';
 
-	let mapCenter = [-122.6765, 45.5231];
+	let mapCenter = [3.2247, 51.2093];
 	let mapZoom = 10;
 	let isFilterDrawerOpen = false;
 	let searchTerm = '';
@@ -17,14 +17,25 @@
 		datePosted: 'any'
 	};
 
-	let categories = [
-		{ name: 'Hout', icon: '🪵', checked: false },
-		{ name: 'Metaal', icon: '🔧', checked: false },
-		{ name: 'Steen', icon: '🪨', checked: false },
-		{ name: 'Elektronica', icon: '💻', checked: false },
-		{ name: 'Armaturen', icon: '🚿', checked: false },
-		{ name: 'Metselwerk', icon: '🧱', checked: false }
-	];
+	// Transform listings data into GeoJSON format
+	let listingsFormatted = {
+		type: 'FeatureCollection',
+		features: listings.map((listing) => ({
+			type: 'Feature',
+			properties: {
+				id: listing.id,
+				title: listing.title,
+				category: listing.category,
+				price: listing.price,
+				description: listing.description,
+				imageUrl: listing.images[0], // Use first image from images array
+				address: listing.address
+			},
+			geometry: listing.geometry
+		}))
+	};
+
+	let categoriesFormatted = categories.map((cat) => ({ ...cat, checked: false }));
 
 	function toggleFilterDrawer() {
 		isFilterDrawerOpen = !isFilterDrawerOpen;
@@ -38,7 +49,7 @@
 	}
 
 	function resetFilters() {
-		categories = categories.map((cat) => ({ ...cat, checked: false }));
+		categoriesFormatted = categories.map((cat) => ({ ...cat, checked: false }));
 		filters = {
 			categories: [],
 			priceRange: [0, 5000],
@@ -91,64 +102,6 @@
 
 		goto(`/listing/${listingId}`);
 	}
-
-	let listings = {
-		type: 'FeatureCollection',
-		features: [
-			{
-				type: 'Feature',
-				properties: {
-					id: 1,
-					title: 'Gerecupereerde Eiken Balken',
-					category: 'Hout',
-					price: 1200,
-					description: '10 massieve eiken balken uit een 19e-eeuws magazijn, uitstekende staat',
-					imageUrl: '/api/placeholder/400/300',
-					address: '123 Hoofdstraat, Portland, OR'
-				},
-				geometry: { type: 'Point', coordinates: [-122.6784, 45.5152] }
-			},
-			{
-				type: 'Feature',
-				properties: {
-					id: 2,
-					title: 'Vintage Bakstenen Collectie',
-					category: 'Metselwerk',
-					price: 850,
-					description: '400 rode kleibakstenen van gesloopt fabrieksgebouw',
-					imageUrl: '/api/placeholder/400/300',
-					address: '456 Pine Ave, Portland, OR'
-				},
-				geometry: { type: 'Point', coordinates: [-122.6819, 45.52] }
-			},
-			{
-				type: 'Feature',
-				properties: {
-					id: 3,
-					title: 'Server Racks (x5)',
-					category: 'Elektronica',
-					price: 2000,
-					description: 'Vijf 42U server racks, goede staat, alle bevestigingsmaterialen inbegrepen',
-					imageUrl: '/api/placeholder/400/300',
-					address: '789 Tech Blvd, Portland, OR'
-				},
-				geometry: { type: 'Point', coordinates: [-122.665, 45.5118] }
-			},
-			{
-				type: 'Feature',
-				properties: {
-					id: 4,
-					title: 'Granieten Aanrechtbladen',
-					category: 'Steen',
-					price: 1500,
-					description: 'Premium zwarte granieten aanrechtbladen van kantoorrenovatie',
-					imageUrl: '/api/placeholder/400/300',
-					address: '101 Market St, Portland, OR'
-				},
-				geometry: { type: 'Point', coordinates: [-122.65, 45.505] }
-			}
-		]
-	};
 
 	// Updated handler for feature clicks to show drawer
 	function handleFeatureClick(e) {
@@ -392,7 +345,7 @@
 	>
 		<GeoJSON
 			id="listings"
-			data={listings}
+			data={listingsFormatted}
 			cluster={{
 				radius: 50,
 				maxZoom: 14,

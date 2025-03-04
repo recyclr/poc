@@ -1,43 +1,19 @@
 <script>
-	import { page } from '$app/stores';
+	import listings from '$lib/assets/data/listings.js';
 	import { onMount } from 'svelte';
 
 	let listing = null;
 	let loading = true;
 	let error = null;
 
-	// In a real app, this would be replaced with an API call
-	const mockListing = {
-		id: 1,
-		title: 'Gerecupereerde Eiken Balken',
-		category: 'Hout',
-		price: 1200,
-		description:
-			'10 massieve eiken balken uit een 19e-eeuws magazijn, uitstekende staat. Perfect voor architecturale kenmerken of hoogwaardige meubelprojecten. Elke balk meet ongeveer 12ft x 12" x 12" en toont een prachtige natuurlijke patina.',
-		images: ['/mock-images/item.jpeg', '/mock-images/item.jpeg', '/mock-images/item.jpeg'],
-		address: '123 Hoofdstraat, Portland, OR',
-		seller: {
-			name: 'John Smith',
-			rating: 4.8,
-			joined: '2023',
-			listings: 15
-		},
-		specifications: {
-			Material: 'Eik',
-			Age: 'Circa 1890s',
-			Condition: 'Goed',
-			Quantity: '10 stuks',
-			Dimensions: '12ft x 12" x 12"'
-		},
-		posted: '2024-02-28',
-		views: 245
-	};
-
 	onMount(async () => {
 		try {
 			// Simulate API call
 			await new Promise((resolve) => setTimeout(resolve, 500));
-			listing = mockListing;
+			// Pick first listing for now
+			console.log(listings);
+			listing = listings[0];
+			console.log(listing);
 		} catch (e) {
 			error = 'Kon zoekertje niet laden';
 		} finally {
@@ -78,7 +54,7 @@
 			<div class="space-y-4">
 				<div class="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg">
 					<img
-						src={listing.images[selectedImage]}
+						src="/mock-images/item.jpeg"
 						alt={listing.title}
 						class="h-full w-full object-cover"
 					/>
@@ -91,7 +67,11 @@
 								: ''}"
 							on:click={() => (selectedImage = i)}
 						>
-							<img src={image} alt="Thumbnail" class="h-full w-full object-cover" />
+							<img
+								src="/mock-images/item.jpeg"
+								alt="Thumbnail"
+								class="h-full w-full object-cover"
+							/>
 						</button>
 					{/each}
 				</div>

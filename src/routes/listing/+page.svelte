@@ -1,52 +1,5 @@
 <script>
-	let listings = [
-		{
-			id: 1,
-			title: 'Gerecupereerde Houten Balken',
-			description: 'Set van eiken balken van sloop van een gebouw uit de jaren 1920',
-			price: 500,
-			location: 'Berlijn',
-			image: 'https://placehold.co/600x400',
-			category: 'Hout'
-		},
-		{
-			id: 2,
-			title: 'Vintage Bakstenen',
-			description: '300 rode kleibakstenen in goede staat',
-			price: 250,
-			location: 'Hamburg',
-			image: 'https://placehold.co/600x400',
-			category: 'Metselwerk'
-		},
-		{
-			id: 3,
-			title: 'Vintage Bakstenen',
-			description: '300 rode kleibakstenen in goede staat',
-			price: 250,
-			location: 'Hamburg',
-			image: 'https://placehold.co/600x400',
-			category: 'Metselwerk'
-		},
-		{
-			id: 4,
-			title: 'Vintage Bakstenen',
-			description: '300 rode kleibakstenen in goede staat',
-			price: 250,
-			location: 'Hamburg',
-			image: 'https://placehold.co/600x400',
-			category: 'Metselwerk'
-		},
-		{
-			id: 5,
-			title: 'Vintage Bakstenen',
-			description: '300 rode kleibakstenen in goede staat',
-			price: 250,
-			location: 'Hamburg',
-			image: 'https://placehold.co/600x400',
-			category: 'Metselwerk'
-		}
-		// Voeg meer mock data toe indien nodig
-	];
+	import listings from '$lib/assets/data/listings.js';
 </script>
 
 <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
