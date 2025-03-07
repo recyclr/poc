@@ -64,7 +64,7 @@
 							href="/listings"
 							class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700"
 						>
-							Uw Advertenties
+							Uw Zoekertjes
 						</a>
 						<a href="/profile" class="ml-3 rounded-full p-1 text-gray-400 hover:text-gray-500">
 							<span class="sr-only">View profile</span>
@@ -128,7 +128,7 @@
 						href="/listing"
 						class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 					>
-						Advertenties
+						Zoekertjes
 					</a>
 					<a
 						href="/map"
@@ -140,14 +140,14 @@
 						href="/my-listings"
 						class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 					>
-						Mijn Advertenties
+						Mijn Zoekertjes
 					</a>
 					{#if isLoggedIn}
 						<a
 							href="/listings"
 							class="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-green-300 hover:bg-gray-50 hover:text-gray-700"
 						>
-							Uw Advertenties
+							Uw Zoekertjes
 						</a>
 						<a
 							href="/profile"

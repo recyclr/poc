@@ -126,7 +126,7 @@
 	<title>Kaart - Recyclr</title>
 </svelte:head>
 
-<div class="relative flex h-screen flex-col">
+<div class=" relative flex h-screen flex-col">
 	<!-- Search and filter bar -->
 	<div class=" bg-white p-4 shadow-md">
 		<div class="mx-auto flex max-w-7xl items-center space-x-2">

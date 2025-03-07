@@ -1,4 +1,4 @@
-<div class="container mx-auto flex flex-col gap-3 px-4 py-8">
+<div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 	<h1 class="text-3xl font-bold text-gray-900">Mijn Zoekertjes</h1>
 
 	<div class=" rounded-lg border border-gray-100 bg-white p-8 text-center shadow-sm">
